@@ -119,9 +119,7 @@ class CDRSimens:
                 
                 stringRes = objCDRLine.Exten+","+objCDRLine.Dir+","+objCDRLine.No+","+objCDRLine.Fecha+","+objCDRLine.Hora+","+objCDRLine.Dur+","+objCDRLine.Cod+","+objCDRLine.Tro
 
-                if(objCDRLine.TipoLlamada == "SALIDA"):
-                    print(objCDRLine.Line)
-                    print(stringRes)
+                
                 self.CreaArchivoSalida(stringRes)
                 
 
