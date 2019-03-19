@@ -48,10 +48,14 @@ class CDRSimens:
             
             if (os.path.exists(obj.OriginFolder)):
                 listaArchivos = [x for x in os.listdir(obj.OriginFolder) if x.endswith(obj.FileExtention)]
-                
+
                 if (len(listaArchivos )> 0):
                     for arch in listaArchivos:
-                        
+
+                        if(os.path.isfile(os.path.join(obj.DestinationFolder,arch))):
+                         os.remove(os.path.join(obj.DestinationFolder,arch))
+                         print("Se Borra  archivo en salida: "+arch)
+
                         obj.ActualFileName = arch
                         self.ProcesaArchivo()
                 else:
@@ -140,7 +144,7 @@ class CDRSimens:
                 objCDRLine.Exten =  objCDRLine.Exten[inicioExten:]
                 objCDRLine.No =  objCDRLine.No[inicioNo:]
             
-                if (objCDRLine.Tro == ""):
+                if (objCDRLine.Tro == ""  and objCDRLine.Dir == "8"):
                     troncalDefault = "4013"
                     objCDRLine.Tro = troncalDefault
 
@@ -150,7 +154,7 @@ class CDRSimens:
                 objCDRLine.Exten = objCDRLine.Exten[inicioExten:]
                 objCDRLine.No = "00"+ objCDRLine.No
 
-            elif (len(objCDRLine.No) == 10):
+            elif (len(objCDRLine.No) == 10 and objCDRLine.Dir == "EE"):
                 objCDRLine.TipoLlamada = "ENTRADA"
 
                 objCDRLine.Exten =  objCDRLine.Exten[inicioExten:]
